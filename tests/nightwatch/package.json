@@ -1,0 +1,15 @@
+{
+  "name": "Nightwatch Tests",
+  "version": "1.0.0",
+  "main": "index.php",
+  "scripts": {
+    "debug": "node --inspect-brk node_modules/.bin/nightwatch",
+    "test": "nightwatch"
+  },
+  "author": "",
+  "devDependencies": {
+    "chromedriver": "^88.0.0",
+    "nightwatch": "^1.5.0"
+  },
+  "dependencies": {}
+}

@@ -1,0 +1,22 @@
+{
+  "src_folders" : ["tests"],
+  "output_folder": "./reports",
+  "custom_commands_path": "./custom_commands",
+  "webdriver" : {
+    "start_process": true,
+    "server_path": "./node_modules/.bin/chromedriver",
+    "port": 9515
+  },
+  "test_settings" : {
+    "default" : {
+      "launch_url": "http://example.local",
+      "desiredCapabilities": {
+        "browserName": "chrome",
+        "acceptInsecureCerts": true,
+        "chromeOptions": {
+          "args": [ "--headless" ]
+        }
+      }
+    }
+  }
+}

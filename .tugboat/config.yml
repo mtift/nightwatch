@@ -1,0 +1,23 @@
+services:
+  php:
+    commands:
+      init: |
+
+        # Install yvm to manage yarn (required by Nightwatch).
+        curl -s https://raw.githubusercontent.com/tophat/yvm/master/scripts/install.js | node
+        bash /root/.yvm/yvm.sh
+
+        # Install Google Chrome (required by Nightwatch).
+        wget https://dl.google.com/linux/direct/google-chrome-stable_current_amd64.deb
+        sudo apt install ./google-chrome-stable_current_amd64.deb -y
+
+
+      online: |
+        # Install and configure Nightwatch, then run the tests.
+        ( cd "${TUGBOAT_ROOT}/tests/nightwatch" && npm install )
+        cp "${TUGBOAT_ROOT}/tests/nightwatch/example.nightwatch.json" "${TUGBOAT_ROOT}/tests/nightwatch/nightwatch.json"
+        # Update the launch_url value.
+        sed -i "s/example.local/localhost/" "${TUGBOAT_ROOT}/tests/nightwatch/nightwatch.json"
+        # Add additional chromeOptions required by Tugboat.
+        sed -i 's/"--headless"/"--headless", "--no-sandbox", "--disable-setuid-sandbox", "--no-zygote", "--disable-gpu", "--disable-dev-shm-usage", "--remote-debugging-port=0"/' "${TUGBOAT_ROOT}/tests/nightwatch/nightwatch.json"
+        ( cd "${TUGBOAT_ROOT}/tests/nightwatch" && npm test )

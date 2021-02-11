@@ -1,0 +1,7 @@
+# Ignore nightwatch files and directories.
+tests/nightwatch/node_modules
+tests/nightwatch/tests_output
+tests/nightwatch/reports
+tests/nightwatch/chromedriver.log
+tests/nightwatch/nightwatch.json
+tests/nightwatch/package-lock.json
