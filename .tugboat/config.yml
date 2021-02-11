@@ -3,6 +3,9 @@ services:
     commands:
       init: |
 
+        ## Install php zip lib (required by Nightwatch)
+        apt-get update && apt-get install -y zlib1g-dev libzip-dev
+
         # Install yvm to manage yarn (required by Nightwatch).
         curl -s https://raw.githubusercontent.com/tophat/yvm/master/scripts/install.js | node
         bash /root/.yvm/yvm.sh
@@ -10,7 +13,6 @@ services:
         # Install Google Chrome (required by Nightwatch).
         wget https://dl.google.com/linux/direct/google-chrome-stable_current_amd64.deb
         sudo apt install ./google-chrome-stable_current_amd64.deb -y
-
 
       online: |
         # Install and configure Nightwatch, then run the tests.
